@@ -36,8 +36,8 @@
                     <p class="text-muted">Sign in to continue your journey</p>
                 </div>
 
-                <form method="POST" action="">
-                    <!-- Email -->
+                <form method="POST" action="{{route('auth.login')}}">
+                    @csrf
                     <div class="form-group floating-label">
                         <i class="fas fa-envelope input-icon"></i>
                         <input type="email" class="form-control" id="email" name="email" placeholder=" " required>

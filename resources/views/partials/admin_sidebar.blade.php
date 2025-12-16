@@ -7,6 +7,9 @@
                 <li><i class="fas fa-comments"></i> <span>Comments</span></li>
                 <li><i class="fas fa-chart-bar"></i> <span>Analytics</span></li>
                 <li><i class="fas fa-cog"></i> <span>Settings</span></li>
-                <li><i class="fas fa-sign-out-alt"></i> <span>Logout</span></li>
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <li><i class="fas fa-sign-out-alt"></i> <button type="submit">Logout</button></li>
+                </form>
             </ul>
         </div>

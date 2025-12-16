@@ -15,8 +15,10 @@ Route::get('/contact',[HomeController::class,'contact'])->name("contact");
 Route::get('/login',[AuthController::class,'loginform'])->name("login");
 Route::get('/signup',[AuthController::class,'signform'])->name("signup");
 Route::post('/register',[AuthController::class,'register'])->name('register');
+Route::post('/logins',[AuthController::class,'login'])->name('auth.login');
+Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
 
 // dashboard routes
 
-Route::get('/dashboard',[DashboardController::class,'index'])->name("dashboard");
+Route::get('/dashboard',[DashboardController::class,'index'])->name("dashboard")->middleware('auth');
