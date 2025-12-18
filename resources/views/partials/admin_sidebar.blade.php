@@ -2,6 +2,7 @@
             <div class="logo"><a  href="{{route('index')}}">InspireBlog</a></div>
             <ul>
                 <li class="active"><i class="fas fa-home"></i> <span>Dashboard</span></li>
+                <li><i class="fas fa-blog"></i> <span><a href="{{route('category.index')}}">category</a></span></li>
                 <li><i class="fas fa-blog"></i> <span>Posts</span></li>
                 <li><i class="fas fa-users"></i> <span>Users</span></li>
                 <li><i class="fas fa-comments"></i> <span>Comments</span></li>

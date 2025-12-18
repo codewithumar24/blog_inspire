@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -11,7 +12,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view("admin.category.index",compact('categories'));
     }
 
     /**
@@ -19,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+    return view("admin.category.create");
     }
 
     /**
@@ -27,21 +29,39 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    $request->validate([
+        'name'=> 'required|string|unique:categories,name',
+        'title'=> 'nullable|string',
+        'description'=> 'nullable|string',
+        'icon'=>'required|image|mimes:png,jpg|max:2048',
+
+    ]);
+
+  $icon = $request->file('icon')->store('categories','public');
+
+  Category::create([
+    'name'=>$request->name,
+    'title'=>$request->title,
+    'description'=>$request->description,
+    'icon'=>$icon
+  ]);
+  return redirect()->route('category.index')->with('success','category created successfully');
+   
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $category = Category::findorFail($id);
+        return view("admin.category.show",compact('category'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit( $id)
     {
         //
     }
