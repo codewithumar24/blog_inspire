@@ -66,14 +66,15 @@
                                    style="background: var(--gradient-success); color: white; border: none;">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a href="categories-edit.html" class="btn btn-sm" 
+                                <a href="{{route('category.edit',$category)}}" class="btn btn-sm" 
                                    style="background: var(--gradient-warning); color: white; border: none;">
                                     <i class="fas fa-edit"></i>
                                 </a>
                                 <button class="btn btn-sm" 
                                         style="background: var(--gradient-danger); color: white; border: none;"
-                                        onclick="return confirm('Are you sure you want to delete this category?')">
-                                    <i class="fas fa-trash"></i>
+                                       >
+                                         <a href="{{route('category.delete',$category->id)}}"><i class="fas fa-trash"></i></a>
+                                    
                                 </button>
                             </div>
                         </td>

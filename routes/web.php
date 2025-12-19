@@ -30,3 +30,6 @@ Route::get('/category/create',[CategoryController::class,'create'])->name("categ
 Route::post('/category/store',[CategoryController::class,'store'])->name("category.store");
 
 Route::get('/category/show/{id}',[CategoryController::class,'show'])->name('category.show');
+Route::get('/category/edit/{id}',[CategoryController::class,'edit'])->name('category.edit');
+Route::post('/category/update/{id}',[CategoryController::class,'update'])->name('category.update');
+Route::get('/category/delete/{id}',[CategoryController::class,'delete'])->name('category.delete');

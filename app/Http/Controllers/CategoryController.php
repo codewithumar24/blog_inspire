@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -13,7 +14,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view("admin.category.index",compact('categories'));
+        return view("admin.category.index", compact('categories'));
     }
 
     /**
@@ -21,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-    return view("admin.category.create");
+        return view("admin.category.create");
     }
 
     /**
@@ -29,24 +30,23 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-    $request->validate([
-        'name'=> 'required|string|unique:categories,name',
-        'title'=> 'nullable|string',
-        'description'=> 'nullable|string',
-        'icon'=>'required|image|mimes:png,jpg|max:2048',
+        $request->validate([
+            'name' => 'required|string|unique:categories,name',
+            'title' => 'nullable|string',
+            'description' => 'nullable|string',
+            'icon' => 'required|image|mimes:png,jpg|max:2048',
 
-    ]);
+        ]);
 
-  $icon = $request->file('icon')->store('categories','public');
+        $icon = $request->file('icon')->store('categories', 'public');
 
-  Category::create([
-    'name'=>$request->name,
-    'title'=>$request->title,
-    'description'=>$request->description,
-    'icon'=>$icon
-  ]);
-  return redirect()->route('category.index')->with('success','category created successfully');
-   
+        Category::create([
+            'name' => $request->name,
+            'title' => $request->title,
+            'description' => $request->description,
+            'icon' => $icon
+        ]);
+        return redirect()->route('category.index')->with('success', 'category created successfully');
     }
 
     /**
@@ -55,30 +55,61 @@ class CategoryController extends Controller
     public function show($id)
     {
         $category = Category::findorFail($id);
-        return view("admin.category.show",compact('category'));
+        return view("admin.category.show", compact('category'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($id)
     {
-        //
+        $category = Category::findorFail($id);
+        return view("admin.category.edit", compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $category = Category::findorFail($id);
+        $request->validate([
+            'name' => 'nullable|string',
+            'title' => 'nullable|string',
+            'description' => 'nullable|string',
+            'icon' => 'nullable|image|mimes:png,jpg|max:2048',
+        ]);
+
+
+        if ($request->hasFile('icon')) {
+            if ($category->icon && Storage::disk('public')->exists($category->icon)) {
+                Storage::disk('public')->delete($category->icon);
+            }
+        }
+        $icon = $request->file('icon')->store('category', 'public');
+
+        $category->update([
+            'name' => $request->name,
+            'title' => $request->title,
+            'description' => $request->description,
+            'icon' => $icon,
+        ]);
+
+        return redirect()->route('category.index')->with('success', 'category updated successfully');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete($id)
     {
-        //
+       $category = Category::findorFail($id);
+if ($category->icon && Storage::disk('public')->exists($category->icon)) {
+                Storage::disk('public')->delete($category->icon);
+            }
+$category->delete();
+return redirect()->route('category.index')->with('success','category deleted successfully');
     }
 }

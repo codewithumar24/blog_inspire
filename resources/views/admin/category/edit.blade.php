@@ -15,40 +15,40 @@
     <div class="card">
         <h2><i class="fas fa-edit"></i> Update Category Information</h2>
         
-        <form action="categories-index.html" method="POST" onsubmit="alert('Category updated successfully! (This is dummy data)'); return false;">
+        <form action="{{route('category.update',$category->id)}}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('PUT')
+           
             
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="name" class="form-label">Category Name</label>
-                    <input type="text" class="form-control" id="name" name="name" value="Technology" required>
+                    <input type="text" class="form-control" id="name" name="name" value="{{$category->name}}" required>
                 </div>
                 
                 <div class="col-md-6 mb-3">
                     <label for="title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="title" name="title" value="Tech Updates" required>
+                    <input type="text" class="form-control" id="title" name="title" value="{{$category->title}}" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="icon" class="form-label">Icon (Font Awesome class)</label>
-                    <input type="text" class="form-control" id="icon" name="icon" value="fas fa-blog" placeholder="fas fa-tag">
+                    <input type="file" class="form-control" id="icon" name="icon" value="fas fa-blog" placeholder="fas fa-tag">
                     <small class="form-text text-muted">Enter Font Awesome icon class (e.g., fas fa-tag, fas fa-blog)</small>
                 </div>
                 
                 <div class="col-md-6 mb-3">
                     <label for="icon_preview" class="form-label">Icon Preview</label>
                     <div id="icon_preview" style="font-size: 2rem; color: var(--primary);">
-                        <i class="fas fa-blog"></i>
+                       <img width="50px" src="{{asset('storage/'. $category->icon)}}" alt="">
                     </div>
                 </div>
             </div>
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="4" required>Latest technology news and updates</textarea>
+                <textarea class="form-control" id="description" name="description" rows="4" required>{{$category->description}}</textarea>
             </div>
 
             <div class="d-flex gap-2">
@@ -63,11 +63,6 @@
     </div>
 </div>
 
-<script>
-document.getElementById('icon').addEventListener('input', function() {
-    const iconClass = this.value || 'fas fa-tag';
-    document.getElementById('icon_preview').innerHTML = `<i class="${iconClass}"></i>`;
-});
-</script>
+
 
 @endsection
