@@ -7,7 +7,7 @@
             <div class="header">
                 <h1>Admin Dashboard</h1>
                 <div style="display:flex; align-items:center; gap:1rem;">
-                    <span>Welcome back, <strong>Admin</strong></span>
+                    <span>Welcome back, <strong>{{auth()->user()->first_name}}</strong></span>
                     <img src="./images/boy1.jpg" alt="Admin" style="width:50px;height:50px;border-radius:50%;border:4px solid var(--primary);">
                 </div>
             </div>

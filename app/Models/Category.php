@@ -7,4 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     protected $fillable = ['name','title','description','icon'];
+
+
+    public function Post(){
+        return $this->hasMany(Post::class);
+    }
 }
+
+

@@ -80,13 +80,15 @@ class CategoryController extends Controller
             'icon' => 'nullable|image|mimes:png,jpg|max:2048',
         ]);
 
-
+        $icon = $category->icon;
         if ($request->hasFile('icon')) {
             if ($category->icon && Storage::disk('public')->exists($category->icon)) {
                 Storage::disk('public')->delete($category->icon);
             }
+            $icon = $request->file('icon')->store('category', 'public');
         }
-        $icon = $request->file('icon')->store('category', 'public');
+
+
 
         $category->update([
             'name' => $request->name,
@@ -105,11 +107,11 @@ class CategoryController extends Controller
      */
     public function delete($id)
     {
-       $category = Category::findorFail($id);
-if ($category->icon && Storage::disk('public')->exists($category->icon)) {
-                Storage::disk('public')->delete($category->icon);
-            }
-$category->delete();
-return redirect()->route('category.index')->with('success','category deleted successfully');
+        $category = Category::findorFail($id);
+        if ($category->icon && Storage::disk('public')->exists($category->icon)) {
+            Storage::disk('public')->delete($category->icon);
+        }
+        $category->delete();
+        return redirect()->route('category.index')->with('success', 'category deleted successfully');
     }
 }

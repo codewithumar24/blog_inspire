@@ -37,220 +37,26 @@
 
             <div class="row g-4">
                 <!-- Technology -->
-                <div class="col-md-6 col-lg-4">
+@foreach ($category as $category)
+                    <div class="col-md-6 col-lg-4">
                     <div class="category-card category-tech h-100">
                         <div class="category-icon">
-                            <i class="fas fa-laptop-code"></i>
+                           <img width="40px" src="{{ asset('storage/' . $category->icon) }}">
                         </div>
-                        <h3 class="category-name">Technology</h3>
+                        <h3 class="category-name">{{$category->name}}</h3>
                         <div class="category-count">42 posts</div>
-                        <p class="category-description">Latest advancements in AI, web development, cybersecurity, and emerging technologies.</p>
+                        <p class="category-description">{{$category->description}}</p>
                         <div class="mb-3">
-                            <strong>Popular:</strong> The Future of Artificial Intelligence
+                            <strong>Popular:</strong> {{$category->title}}
                         </div>
                         <a href="" class="category-link">
                             View Articles <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
+@endforeach
                 
-                <!-- Business -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card category-business h-100">
-                        <div class="category-icon">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <h3 class="category-name">Business</h3>
-                        <div class="category-count">28 posts</div>
-                        <p class="category-description">Entrepreneurship, marketing strategies, finance, and leadership insights.</p>
-                        <div class="mb-3">
-                            <strong>Popular:</strong> Building Sustainable Business Models
-                        </div>
-                        <a href="" class="category-link">
-                            View Articles <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Lifestyle -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card category-lifestyle h-100">
-                        <div class="category-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <h3 class="category-name">Lifestyle</h3>
-                        <div class="category-count">35 posts</div>
-                        <p class="category-description">Personal development, travel, fashion, and work-life balance tips.</p>
-                        <div class="mb-3">
-                            <strong>Popular:</strong> Mindfulness Techniques for Daily Life
-                        </div>
-                        <a href="" class="category-link">
-                            View Articles <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Health & Wellness -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card category-health h-100">
-                        <div class="category-icon">
-                            <i class="fas fa-spa"></i>
-                        </div>
-                        <h3 class="category-name">Health & Wellness</h3>
-                        <div class="category-count">19 posts</div>
-                        <p class="category-description">Nutrition, fitness, mental health, and holistic wellness practices.</p>
-                        <div class="mb-3">
-                            <strong>Popular:</strong> Nutrition Hacks for Busy Professionals
-                        </div>
-                        <a href="" class="category-link">
-                            View Articles <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Creative Arts -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card category-creative h-100">
-                        <div class="category-icon">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <h3 class="category-name">Creative Arts</h3>
-                        <div class="category-count">23 posts</div>
-                        <p class="category-description">Photography, design, writing, music, and creative expression.</p>
-                        <div class="mb-3">
-                            <strong>Popular:</strong> Creative Photography Techniques
-                        </div>
-                        <a href="" class="category-link">
-                            View Articles <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Science -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card category-science h-100">
-                        <div class="category-icon">
-                            <i class="fas fa-flask"></i>
-                        </div>
-                        <h3 class="category-name">Science</h3>
-                        <div class="category-count">16 posts</div>
-                        <p class="category-description">Discoveries, research breakthroughs, and scientific explanations.</p>
-                        <div class="mb-3">
-                            <strong>Popular:</strong> The Science of Sleep and Productivity
-                        </div>
-                        <a href="" class="category-link">
-                            View Articles <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Education -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card category-tech h-100">
-                        <div class="category-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <h3 class="category-name">Education</h3>
-                        <div class="category-count">21 posts</div>
-                        <p class="category-description">Learning methodologies, online education, and skill development.</p>
-                        <div class="mb-3">
-                            <strong>Popular:</strong> Future of Online Learning
-                        </div>
-                        <a href="" class="category-link">
-                            View Articles <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Entertainment -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card category-creative h-100">
-                        <div class="category-icon">
-                            <i class="fas fa-film"></i>
-                        </div>
-                        <h3 class="category-name">Entertainment</h3>
-                        <div class="category-count">17 posts</div>
-                        <p class="category-description">Movies, TV shows, gaming, and pop culture analysis.</p>
-                        <div class="mb-3">
-                            <strong>Popular:</strong> Impact of Streaming Services
-                        </div>
-                        <a href="" class="category-link">
-                            View Articles <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Finance -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card category-business h-100">
-                        <div class="category-icon">
-                            <i class="fas fa-coins"></i>
-                        </div>
-                        <h3 class="category-name">Finance</h3>
-                        <div class="category-count">24 posts</div>
-                        <p class="category-description">Investment strategies, personal finance, and economic insights.</p>
-                        <div class="mb-3">
-                            <strong>Popular:</strong> Smart Investment Strategies for 2023
-                        </div>
-                        <a href="" class="category-link">
-                            View Articles <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Food & Cooking -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card category-lifestyle h-100">
-                        <div class="category-icon">
-                            <i class="fas fa-utensils"></i>
-                        </div>
-                        <h3 class="category-name">Food & Cooking</h3>
-                        <div class="category-count">15 posts</div>
-                        <p class="category-description">Recipes, culinary techniques, and food culture exploration.</p>
-                        <div class="mb-3">
-                            <strong>Popular:</strong> Healthy Meal Prep Ideas
-                        </div>
-                        <a href="" class="category-link">
-                            View Articles <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Travel -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card category-lifestyle h-100">
-                        <div class="category-icon">
-                            <i class="fas fa-plane"></i>
-                        </div>
-                        <h3 class="category-name">Travel</h3>
-                        <div class="category-count">18 posts</div>
-                        <p class="category-description">Destination guides, travel tips, and cultural experiences.</p>
-                        <div class="mb-3">
-                            <strong>Popular:</strong> Sustainable Travel Practices
-                        </div>
-                        <a href="" class="category-link">
-                            View Articles <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Sports -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="category-card category-health h-100">
-                        <div class="category-icon">
-                            <i class="fas fa-running"></i>
-                        </div>
-                        <h3 class="category-name">Sports</h3>
-                        <div class="category-count">14 posts</div>
-                        <p class="category-description">Athletics, fitness sports, and sports analysis.</p>
-                        <div class="mb-3">
-                            <strong>Popular:</strong> Sports Psychology Techniques
-                        </div>
-                        <a href="" class="category-link">
-                            View Articles <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+              
             </div>
         </div>
     </section>
