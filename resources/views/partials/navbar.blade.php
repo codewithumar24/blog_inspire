@@ -27,9 +27,11 @@
                      <li class="nav-item">
                         <a class="nav-link" href="{{route('dashboard')}}">dashboard</a>
                     </li>
-                    <li class="nav-item ms-2">
+                    @guest()
+                        <li class="nav-item ms-2">
                         <a href="{{route('login')}}" class="btn btn-outline-primary rounded-pill px-4">Login</a>
                     </li>
+                    @endguest
                 </ul>
             </div>
         </div>

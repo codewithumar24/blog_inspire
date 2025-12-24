@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,7 +13,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view("admin.posts.index");
+
+        $posts = Post::all();
+        return view("admin.posts.index",compact('posts'));
     }
 
     /**
@@ -21,7 +24,7 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create',compact('categories'));
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -30,12 +33,21 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required|unique:posts,title|string',
-            'category_id'=>'required',
-            'image'=>'required|image|mimes:png,jpg,jef,jpeg|max:2048',
-            'decription'=>'required|string'
+            'title' => 'required|unique:posts,title|string',
+            'category_id' => 'required',
+            'image' => 'required|image|mimes:png,jpg,jef,jpeg|max:2048',
+            'description' => 'required|string'
         ]);
-        dd($request->all());
+        $image = $request->file('image')->store('images', 'public');
+        Post::create([
+            'title' => $request->title,
+            'category_id' => $request->category_id,
+            'image' => $image,
+            'description' => $request->description,
+
+        ]);
+
+        return redirect()->route('post.index')->with('success', 'post created successfully');
     }
 
     /**

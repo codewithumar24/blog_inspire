@@ -60,7 +60,7 @@
            
             <div class="mb-3">
                 <label for="content" class="form-label">Post Content</label>
-                <textarea class="form-control" id="content" name="decription" rows="10" required></textarea>
+                <textarea class="form-control" id="content" name="description" rows="10" required></textarea>
             </div>
 
             <div class="d-flex gap-2">
